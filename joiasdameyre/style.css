@@ -1,0 +1,239 @@
+:root {
+  --terracota: #D16B39;
+  --bege-claro: #F5F1EB;
+  --azul-petroleo: #2F4858;
+  --verde-oliva: #798478;
+  --font-titulo: 'Cormorant Garamond', serif;
+  --font-corpo: 'Open Sans', sans-serif;
+  --font-destaque: 'Pacifico', cursive;
+  --base-spacing: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-corpo);
+  background-color: var(--bege-claro);
+  color: var(--azul-petroleo);
+  line-height: 1.6;
+}
+
+header {
+  background-color: var(--bege-claro);
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo h2{
+    font-family: var(--font-titulo);
+    font-size: 35px;
+}
+
+nav a:hover,
+nav a:focus {
+  box-shadow: inset 6.5em 0 0 0 var(--hover);
+}
+
+#menu
+section {
+  padding: 64px 32px;
+}
+
+.hero {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 32px;
+  padding: 60px 0px;
+}
+
+.hero-text {
+  max-width: 500px;
+}
+
+.hero-text h1 {
+  font-family: var(--font-titulo);
+  font-size: 36px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.hero-text p {
+  font-size: 16px;
+  margin-bottom: 24px;
+}
+
+.hero-text button {
+  background-color: var(--terracota);
+  color: white;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.hero-text button:hover {
+  background-color: #b3572e;
+}
+
+.hero-image {
+  width: 500px;
+  height: 350px;
+  background-image: url(assets/joia2.jpeg);
+  background-size: cover;
+  background-position: center;
+}
+
+.produtos-slider h2{
+  font-family: var(--font-titulo); 
+  font-size: 40px;
+  margin-bottom: 32px;
+  text-align: center;
+}
+
+.produto {
+  background-color: white;
+  border-radius: 8px;
+  padding: 16px;
+  text-align: center;
+}
+
+.produto-imagem {
+  width: 100%;
+  height: 200px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+.produto-imagem img{
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+  object-fit: contain;
+  display: block;
+}
+
+.produto h3 {
+  font-family: var(--font-titulo);
+  font-size: 20px;
+}
+
+.produto p {
+  font-size: 16px;
+  color: var(--terracota);
+}
+
+.sobre-loja {
+  margin-top: 60px;
+  text-align: center;
+  background-image: linear-gradient(rgba(47, 72, 88, 0.8), rgba(47, 72, 88, 0.8)), url(assets/fundo3.jpg);
+  background-position: center;
+  background-size: cover;
+}
+
+.sobre-loja h2 {
+  font-family: var(--font-titulo);
+  font-size: 40px;
+  margin-bottom: 24px;
+  padding-top: 20px;
+  color: var(--bege-claro);
+}
+
+.sobre-loja p {
+  max-width: 900px;
+  margin: 0 auto 8px;
+  text-align: justify;
+  text-indent: 1em;
+  color: var(--bege-claro);
+}
+
+.whatsapp-button {
+  background-color: var(--terracota);
+  color: white;
+  margin: 20px 0px 20px 0px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  transition: background-color 0.3s ease;
+}
+
+.whatsapp-button:hover {
+  background-color: #b3572e;
+}
+
+.localizacao {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 60px 0px;
+}
+
+.mapa {
+  width: 100%;
+  max-width: 600px;
+  height: 300px;
+  background-color: #ccc;
+  border-radius: 8px;
+}
+
+.mapa iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  border-radius: 8px;
+  display: block;
+}
+
+.local-texto {
+  max-width: 400px;
+  padding-bottom: 20px;
+}
+
+.local-texto h3 {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-titulo);
+  font-size: 24px;
+  margin-bottom: 8px;
+}
+
+.local-texto p {
+  text-align: justify;
+}
+
+footer {
+  background-color: var(--azul-petroleo);
+  color: white;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+}
+
+footer a {
+  color: white;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+footer a:hover {
+  color: var(--terracota);
+}

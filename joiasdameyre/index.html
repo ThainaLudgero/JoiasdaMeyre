@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Jóias da Meyre</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Open+Sans&family=Pacifico&display=swap" rel="stylesheet" />
+  <!-- Feather -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+  <header class="shadow-md">
+    <div id="logo"><h2 class="text-xl font-bold text-[#2F4858]">Jóias da Meyre</h2></div>
+
+    <!-- Botão Hamburger -->
+    <button id="menu-btn" class="sm:hidden flex flex-col gap-1">
+      <span class="block w-6 h-0.5 bg-[#2F4858]"></span>
+      <span class="block w-6 h-0.5 bg-[#2F4858]"></span>
+      <span class="block w-6 h-0.5 bg-[#2F4858]"></span>
+    </button>
+  
+    <!-- Menu de navegação -->
+    <nav id="menu" class="hidden flex-col absolute top-16 left-0 w-full bg-[#2F4858] sm:bg-[#F5F1EB] text-center sm:flex sm:static sm:flex-row sm:w-auto">
+      <a href="#produtos" class="block py-4 sm:pr-4 sm:py-0 font-bold text-[#F5F1EB] sm:text-[#2F4858] hover:text-[#D16B39] transition-colors duration-300 ease-in-out">Produtos</a>
+      <a href="#sobrealoja" class="block py-4 sm:pr-4 sm:py-0 font-bold text-[#F5F1EB] sm:text-[#2F4858] hover:text-[#D16B39] transition-colors duration-300 ease-in-out">Sobre a Loja</a>
+      <a href="#localizacao" class="block py-4 sm:pr-4 sm:py-0 font-bold text-[#F5F1EB] sm:text-[#2F4858] hover:text-[#D16B39] transition-colors duration-300 ease-in-out">Localização</a>
+    </nav>
+  </header>
+  
+  <script>
+    const btn = document.getElementById('menu-btn');
+    const menu = document.getElementById('menu');
+  
+    btn.addEventListener('click', () => {
+      menu.classList.toggle('hidden');
+    });
+  </script>
+  <!-- Section Início -->
+  <section class="hero text-center">
+    <div class="hero-text">
+      <h1>Bem-vindo à Jóias da Meyre</h1>
+      <p>Celebramos a arte manual com peças únicas que carregam história, cuidado e autenticidade. Explore nossas criações e sinta a beleza do feito à mão.</p>
+      <button onclick="document.getElementById('produtos').scrollIntoView({ behavior: 'smooth' })">Ver produtos</button>
+    </div>
+    <div class="hero-image rounded-none sm:rounded-lg"></div>
+  </section>
+  <div class="swiper produtos-slider" id="produtos">
+    <h2>Produtos</h2>
+    <div class="swiper-wrapper" id="wrapper">
+    </div>
+    <!-- Botões de navegação -->
+    <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div>
+  </div>
+  <!-- Pegar Produtos Cadastrados -->
+  <script>
+    const sheetID = '1jWJLVZPBNJi0zdNQKEhRYwgnT5n6fzkvnNbC3OppgR4';
+    const sheetName = 'CadastroProdutos'; 
+    const apiURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/${sheetName}?alt=json&key=AIzaSyBXs2Zr4tzjB2p2yO_RB19XuZ2OwiljPtU`;
+    
+    fetch(apiURL)
+      .then(response => response.json())
+      .then(data => {
+        const rows = data.values;
+        const headers = rows[0];
+        const produtos = rows.slice(1).map(row =>
+          Object.fromEntries(headers.map((h, i) => [h, row[i]]))
+        );
+    
+        const container = document.getElementById('wrapper');
+        produtos.forEach(produto => {
+          const div = document.createElement('div');
+          div.innerHTML = `
+          <div class="swiper-slide produto"> 
+            <div class="produto-imagem"><img src="${produto.Imagem}" alt="joia"></div>
+            <h3>${produto.Nome}</h3>
+            <p>R$ ${produto.Preço}</p>
+          </div>
+          `;
+          container.appendChild(div);
+          console.log(produtos);
+        });
+      });
+    </script>
+  <!-- Seção Sobre a Loja -->
+  <section id="sobrealoja" class="sobre-loja px-4 sm:px-0">
+    <h2>Sobre a Loja</h2>
+    <p>
+      Na Jóias da Meyre, cada peça é feita à mão com carinho, atenção e intenção. O que começou como um hobbie de uma professora apaixonada por artesanato logo ganhou vida própria — transformando pequenos momentos de criação em algo maior: acessórios únicos, pensados especialmente para cada cliente.
+    </p>
+    <p>
+      Aqui, não trabalhamos com produção em massa. Acreditamos que cada mulher tem sua própria beleza, seu próprio estilo, e merece uma peça que reflita exatamente isso. Por isso, nossa produção é personalizada: colares, pulseiras e brincos feitos sob encomenda, com um olhar cuidadoso para os mínimos detalhes.
+    </p>
+    <p>
+      Ainda estamos no início dessa caminhada. Somos uma loja pequena, nascida entre conversas de sala dos professores e olhares curiosos nos corredores da escola. Vendemos principalmente no contato direto, no olho no olho — e é com esse mesmo espírito que agora damos nosso primeiro passo online.
+
+      Este site é nossa vitrine: um espaço simples, feito com dedicação, onde você pode conhecer um pouco mais do nosso trabalho e, se quiser, fazer seu pedido.
+    </p>
+    <button class="whatsapp-button" onclick="abrirWhatsApp()">
+      <span><i data-feather="message-circle"></i></span> Faça seu pedido
+    </button>
+  </section>
+  <!-- Seção Localização -->
+  <section id="localizacao" class="localizacao">
+    <div class="mapa"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d7961.959727812353!2d-38.596290310895846!3d-3.814428584637544!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c74d94d3eaba19%3A0x677581f11240988c!2sConj.%20Esperan%C3%A7a%2C%20Fortaleza%20-%20CE!5e0!3m2!1spt-BR!2sbr!4v1746706924831!5m2!1spt-BR!2sbr" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe></div>
+    <div class="local-texto">
+      <h3><i data-feather="map-pin"></i> Ceará, Fortaleza, Conjunto Esperança</h3>
+      <p>Entregamos apenas presencialmente para a região do Conjunto Esperança.</p>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Jóias da Meyre. Todos os direitos reservados.</p>
+    <p>Feito com carinho e atenção aos detalhes.</p>
+  </footer>
+  <script>
+    function abrirWhatsApp() {
+    const parte1 = "55";
+    const parte2 = "85";
+    const parte3 = "987286418";
+    const numero = parte1 + parte2 + parte3;
+
+    const mensagem = "Olá, gostaria de fazer um pedido!";
+    const textoCodificado = encodeURIComponent(mensagem);
+
+    const urlMobile = `https://wa.me/${numero}?text=${textoCodificado}`;
+    const urlDesktop = `https://web.whatsapp.com/send?phone=${numero}&text=${textoCodificado}`;
+
+    const isMobile = /iPhone|Android|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+    const destino = isMobile ? urlMobile : urlDesktop;
+    window.open(destino, '_blank');
+  }
+  </script>
+  <script>
+    feather.replace();
+  </script>
+    <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    const swiper = new Swiper('.produtos-slider', {
+      slidesPerView: 4,
+      spaceBetween: 24,
+      navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev',
+      },
+      breakpoints: {
+        1024: {
+          slidesPerView: 4
+        },
+        768: {
+          slidesPerView: 2
+        },
+        0: {
+          slidesPerView: 1
+        }
+      }
+    });
+  </script>  
+</body>
+
+</html>
