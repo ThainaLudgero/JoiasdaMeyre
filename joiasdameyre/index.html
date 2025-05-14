@@ -76,16 +76,14 @@
     
         const container = document.getElementById('wrapper');
         produtos.forEach(produto => {
-          const div = document.createElement('div');
-          div.innerHTML = `
-          <div class="swiper-slide produto"> 
+          const slide = document.createElement('div');
+          slide.className = 'swiper-slide produto';
+          slide.innerHTML = `
             <div class="produto-imagem"><img src="${produto.Imagem}" alt="joia"></div>
             <h3>${produto.Nome}</h3>
             <p>R$ ${produto.Preço}</p>
-          </div>
           `;
-          container.appendChild(div);
-          console.log(produtos);
+          container.appendChild(slide);
         });
       });
     </script>
@@ -121,25 +119,6 @@
     <p>Feito com carinho e atenção aos detalhes.</p>
   </footer>
   <script>
-    function abrirWhatsApp() {
-    const parte1 = "55";
-    const parte2 = "85";
-    const parte3 = "987286418";
-    const numero = parte1 + parte2 + parte3;
-
-    const mensagem = "Olá, gostaria de fazer um pedido!";
-    const textoCodificado = encodeURIComponent(mensagem);
-
-    const urlMobile = `https://wa.me/${numero}?text=${textoCodificado}`;
-    const urlDesktop = `https://web.whatsapp.com/send?phone=${numero}&text=${textoCodificado}`;
-
-    const isMobile = /iPhone|Android|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
-
-    const destino = isMobile ? urlMobile : urlDesktop;
-    window.open(destino, '_blank');
-  }
-  </script>
-  <script>
     feather.replace();
   </script>
     <!-- Swiper JS -->
@@ -165,6 +144,6 @@
       }
     });
   </script>  
+  <script src="contactscript.js"></script>
 </body>
-
 </html>
